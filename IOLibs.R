@@ -15,6 +15,7 @@ readFile <- function() {
     filter(Date == "1/2/2007" | Date == "2/2/2007") %>% 
     mutate(Date=dmy(Date), 
            Time=as.ITime(strptime(Time, "%H:%M:%S")), 
+           DT=ymd_hms(paste(Date, Time)),
            Global_active_power=as.numeric(Global_active_power),
            Global_reactive_power=as.numeric(Global_reactive_power),
            Voltage=as.numeric(Voltage),
