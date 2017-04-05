@@ -1,0 +1,15 @@
+source(file = "./IOLibs.R")
+
+df <- readFile()
+
+png("plot4.png", width = 480, height = 480, units="px")
+old.par<-par(mfrow=c(2,2))
+with(df, plot(DT, Global_active_power, xlab="", ylab="Global active power", type="l"))
+with(df, plot(DT, Voltage, type="l"))
+with(df, { plot(DT, Sub_metering_1, xlab="", ylab="Energy sub metering", type="l")
+  lines(DT, Sub_metering_2, col="red")
+  lines(DT, Sub_metering_3, col="blue")})
+legend("topright", legend=c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"), bty="n", col=c("black", "red", "blue"), lty=rep(1,3))
+with(df, plot(DT, Global_reactive_power, type="l", yaxp=c(0.0, 0.5, 5), las=2))
+par(old.par)
+dev.off()
